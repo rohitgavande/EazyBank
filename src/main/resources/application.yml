@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: Accounts-Service
+  datasource:
+    url: jdbc:mysql://localhost:3306/eazybank
+    username: root
+    password: Rohit@1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+       ddl-auto: update
