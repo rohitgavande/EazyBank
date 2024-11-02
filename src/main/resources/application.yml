@@ -10,7 +10,7 @@ spring:
     password: Rohit@1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    show-sql: true
+    show-sql: false
     generate-ddl: true
     properties:
       hibernate:

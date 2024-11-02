@@ -2,9 +2,11 @@ package com.eazybank.Accounts.Controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eazybank.Accounts.Constants.AccountsConstants;
@@ -34,5 +36,14 @@ public class AccountsController {
 				.body(new ResponseDto(AccountsConstants.STATUS_201, AccountsConstants.ACCOUNT_CREATED));
 
 	}
+	
+	@GetMapping("/fetch")
+	public ResponseEntity<CustomerDto> fetchAccountDetails(@RequestParam String mobileNumber){
+		CustomerDto customerDto = service.fetchAccount(mobileNumber);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(customerDto);
+	}
+	
+	
 
 }
