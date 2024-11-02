@@ -86,4 +86,42 @@ public class AccountServiceImpl implements IAccountService {
 		return customerDto;
 	}
 
+	@Override
+	public boolean updateAccount(CustomerDto customerDto) {
+		boolean isupdated = false;
+		AccountsDto accountsDto = customerDto.getAccountsDto();
+		
+		if (accountsDto != null) {
+			Accounts accounts = accountRepository.findById(accountsDto.getAccountNumber())
+					.orElseThrow(() -> new ResourceNotFoundException("Account", "AccountNumber",
+							accountsDto.getAccountNumber().toString()));
+
+			BeanUtils.copyProperties(accountsDto, accounts);
+			accountRepository.saveAndFlush(accounts);
+			
+			Long customerId = accounts.getCustomerId();
+			
+			Customer customer = customerRepository.findById(customerId).orElseThrow(
+					() -> new ResourceNotFoundException("Customer", "CustomerId", accounts.getCustomerId().toString()));
+
+			BeanUtils.copyProperties(customerDto, customer);
+			customerRepository.saveAndFlush(customer);
+			isupdated = true;
+		}
+		return isupdated;
+	}
+
+	@Override
+	public boolean deleteAccount(String mobileNumber) {
+		
+		Customer customer = customerRepository.findByMobileNumber(mobileNumber)
+				.orElseThrow(() -> new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber));
+		
+		accountRepository.deletByCustomerId(customer.getCustomerId());
+		customerRepository.deleteById(customer.getCustomerId());
+		return true;
+	}
+	
+	
+
 }

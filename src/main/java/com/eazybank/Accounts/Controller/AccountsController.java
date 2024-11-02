@@ -1,9 +1,12 @@
 package com.eazybank.Accounts.Controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +47,26 @@ public class AccountsController {
 		return ResponseEntity.status(HttpStatus.OK).body(customerDto);
 	}
 	
+	@PutMapping("/update")
+	public ResponseEntity<ResponseDto> updateAccountDetails(@RequestBody CustomerDto customerDto) {
+		boolean isUpdated = service.updateAccount(customerDto);
+		if (isUpdated) {
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Account Updated"));
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ResponseDto("Something went wrong while updating the details ! "));
+		}
+	}
 	
+	@DeleteMapping("/delete")
+	public ResponseEntity<ResponseDto> deleteAccountDetails(@RequestParam String mobileNumber) {
+		boolean isdeleted = service.deleteAccount(mobileNumber);
+		if (isdeleted) {
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto("Account Deleted"));
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(new ResponseDto("Something went wrong while deleting the details ! "));
+		}
+	}
 
 }
