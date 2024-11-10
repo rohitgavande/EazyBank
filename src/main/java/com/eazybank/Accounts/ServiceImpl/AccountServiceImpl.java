@@ -54,8 +54,6 @@ public class AccountServiceImpl implements IAccountService {
 		accounts.setAccountNumber(randomAccouontNumber);
 		accounts.setAccountType("Savings");
 		accounts.setBranchAddress("123 ,Main street, Thane");
-		accounts.setCreatedAt(LocalDateTime.now());
-		accounts.setCreatedBy("Annonymous");
 		return accounts;
 
 	}

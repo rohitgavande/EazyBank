@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT equivalent
@@ -24,14 +24,4 @@ public class Customer {
 
     @Column(name = "mobile_number", nullable = false, length = 20)
     private String mobileNumber;
-
-    private LocalDateTime createdAt;
-
-    private String createdBy;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @Column(name = "updated_by", length = 20)
-    private String updatedBy;
 }

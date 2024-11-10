@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class ResponseDto {
 
 	public ResponseDto(String string) {
+		this.statusMsg = string;
 	}
 
 	private String statusCode;
