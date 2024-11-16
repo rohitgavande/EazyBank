@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.eazybank</groupId>
-	<artifactId>Accounts</artifactId>
+	<artifactId>Cards</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Accounts</name>
+	<name>Cards</name>
 	<description>Banking project using microservices</description>
 	<url/>
 	<licenses>

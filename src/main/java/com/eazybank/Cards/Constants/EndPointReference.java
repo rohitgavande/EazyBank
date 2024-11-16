@@ -1,4 +1,4 @@
-package com.eazybank.Accounts.Constants;
+package com.eazybank.Cards.Constants;
 
 public class EndPointReference {
 

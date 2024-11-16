@@ -1,4 +1,4 @@
-package com.eazybank.Accounts.Exception;
+package com.eazybank.Cards.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
