@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8090
 
 spring:
   application:
-    name: Accounts-Service
+    name: Loans-Service
   datasource:
     url: jdbc:mysql://localhost:3306/eazybank
     username: root

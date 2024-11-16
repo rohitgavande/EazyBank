@@ -1,4 +1,4 @@
-package com.eazybank.Accounts.Audit;
+package com.eazybank.Loans.Audit;
 import java.util.Optional;
 
 import org.springframework.data.domain.AuditorAware;
