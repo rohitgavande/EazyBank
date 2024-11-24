@@ -1,10 +1,10 @@
-package com.eazybytes.loans;
+package com.eazybank.accounts;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LoansApplicationTests {
+class AccountsApplicationTests {
 
 	@Test
 	void contextLoads() {
