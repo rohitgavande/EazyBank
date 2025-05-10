@@ -1,0 +1,16 @@
+Spring:
+ config:
+  activate:
+   on-profile: "prod"
+
+build:
+ version: "3.0"
+ 
+accounts:
+ message: "Welcome to Eazybank Account related local API's - PROD"
+ ContactDetails:
+  name: "Rohit- Developer - PROD"
+  email: "Rohit@gmail.com"
+ OnCallSupport:
+  -4125154211
+  -9754545212

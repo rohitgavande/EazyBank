@@ -1,0 +1,16 @@
+Spring:
+ config:
+  activate:
+   on-profile: "qa"
+
+build:
+ version: "2.0"
+ 
+accounts:
+ message: "Welcome to Eazybank Account related local API's QA"
+ ContactDetails:
+  name: "Rohan- QA lead - QA profile"
+  email: "Rohan@gmail.com"
+ OnCallSupport:
+  -8485854848
+  -9551452662

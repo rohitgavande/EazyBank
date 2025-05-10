@@ -15,3 +15,18 @@ spring:
     properties:
       hibernate:
        ddl-auto: update
+  profiles:
+    active:
+    - "prod"
+build:
+ version: "1.0"
+ 
+accounts:
+ message: "Welcome to Eazybank Account related local API's"
+ ContactDetails:
+  name: "Rohit- Developer"
+  email: "Rohit@gmail.com"
+ OnCallSupport:
+  -1234567892
+  -5846541254
+ 
