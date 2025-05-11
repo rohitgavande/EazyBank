@@ -1,0 +1,11 @@
+build:
+ version: "1.0"
+ 
+cards:
+ message: "Welcome to Eazybank Cards related local API's"
+ ContactDetails:
+  name: "Rohit- Developer"
+  email: "Rohit@gmail.com"
+ OnCallSupport:
+  -1234567892
+  -5846541254

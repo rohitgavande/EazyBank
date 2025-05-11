@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Accounts-Service
+    name: accounts
   datasource:
     url: jdbc:mysql://localhost:3306/eazybank
     username: root
@@ -17,16 +17,14 @@ spring:
        ddl-auto: update
   profiles:
     active:
-    - "prod"
-build:
- version: "1.0"
- 
-accounts:
- message: "Welcome to Eazybank Account related local API's"
- ContactDetails:
-  name: "Rohit- Developer"
-  email: "Rohit@gmail.com"
- OnCallSupport:
-  -1234567892
-  -5846541254
- 
+    - prod
+  config:
+    import:
+    - "configserver:http://localhost:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"

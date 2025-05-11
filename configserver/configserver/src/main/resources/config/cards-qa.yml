@@ -1,0 +1,11 @@
+build:
+ version: "2.0"
+ 
+cards:
+ message: "Welcome to Eazybank Cards related local API's QA"
+ ContactDetails:
+  name: "Rohan- QA lead - QA profile"
+  email: "Rohan@gmail.com"
+ OnCallSupport:
+  -8485854848
+  -9551452662

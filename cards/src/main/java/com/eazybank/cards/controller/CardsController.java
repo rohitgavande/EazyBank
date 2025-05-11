@@ -1,5 +1,28 @@
 package com.eazybank.cards.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.eazybank.cards.constants.CardsConstants;
+import com.eazybank.cards.dto.CardsContactInfoDto;
+import com.eazybank.cards.dto.CardsDto;
+import com.eazybank.cards.dto.ErrorResponseDto;
+import com.eazybank.cards.dto.ResponseDto;
+import com.eazybank.cards.service.ICardsService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -9,17 +32,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import com.eazybank.cards.constants.CardsConstants;
-import com.eazybank.cards.dto.CardsDto;
-import com.eazybank.cards.dto.ErrorResponseDto;
-import com.eazybank.cards.dto.ResponseDto;
-import com.eazybank.cards.service.ICardsService;
 
 @Tag(
         name = "CRUD REST APIs for Cards in EazyBank",
@@ -27,11 +39,23 @@ import com.eazybank.cards.service.ICardsService;
 )
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
-@AllArgsConstructor
 @Validated
 public class CardsController {
-
+	
+	@Value("${build.version}")
+	private String buildVersion; 
+	
+	@Autowired
+	Environment environment;
+	
+	@Autowired
+	CardsContactInfoDto cardsContactInfoDto;
+	
     private ICardsService iCardsService;
+    
+    public CardsController(ICardsService iCardsService) {
+    	this.iCardsService = iCardsService;
+    }
 
     @Operation(
             summary = "Create Card REST API",
@@ -157,5 +181,29 @@ public class CardsController {
                     .body(new ResponseDto(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417_DELETE));
         }
     }
+    
+    @Operation(summary = "Get Build info", description = "Get build info that is deployed")
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "HTTP Status OK"),
+			@ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) })
+	@GetMapping(path = "/build-info")
+	public ResponseEntity<String> getBuildInfo() {
+		return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+	}
+	
+	@Operation(summary = "Get Java version info", description = "Get Java version info that is deployed to this app")
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "HTTP Status OK"),
+			@ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) })
+	@GetMapping(path = "/java-version")
+	public ResponseEntity<String> getJavaVersion() {
+		return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
+	}
+	
+	@Operation(summary = "Get contact info", description = "Get contact info")
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "HTTP Status OK"),
+			@ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))) })
+	@GetMapping(path = "/contact-info")
+	public ResponseEntity<CardsContactInfoDto> getContactinfo() {
+		return ResponseEntity.status(HttpStatus.OK).body(cardsContactInfoDto);
+	}
 
 }
