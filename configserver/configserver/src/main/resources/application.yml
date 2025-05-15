@@ -23,3 +23,19 @@ spring:
 
 encrypt:
   key: "12345"
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
