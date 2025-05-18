@@ -7,11 +7,11 @@ spring:
   profiles:
     active:
     - prod 
-  datasource:
-    url: jdbc:mysql://localhost:3308/loans
-    username: root
-    password: Rohit@1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#  datasource:
+#    url: jdbc:mysql://localhost:3308/loans
+#    username: root
+#    password: Rohit@1234
+#    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
   sql:
@@ -21,9 +21,9 @@ spring:
     properties:
       hibernate:
        ddl-auto: update
-#  config:
-#   import:
-#   - "configserver:http://localhost:8071/"
+  config:
+   import:
+   - "configserver:http://localhost:8071/"
 
 management:
   endpoints:
@@ -31,3 +31,28 @@ management:
       exposure:
         include:
         - "*"
+  info:
+    env:
+     enabled: true
+  endpoint:
+   shutdown:
+    enabled: true
+
+endpoints:
+  shutdown:
+    enabled: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+   fetch-registry: true
+   register-with-eureka: true
+   service-url:
+     defaultZone: http://localhost:8070/eureka/
+
+info:
+ app:
+  name: "Loans"
+  description: "EazyBank Loans application"
