@@ -21,9 +21,9 @@ spring:
     properties:
       hibernate:
        ddl-auto: update
-  config:
-   import:
-   - "configserver:http://localhost:8071/"
+#  config:
+#   import:
+#   - "configserver:http://localhost:8071/"
 
 management:
   endpoints:
