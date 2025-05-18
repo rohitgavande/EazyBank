@@ -5,16 +5,19 @@ spring:
   application:
     name: accounts
   datasource:
-    url: jdbc:mysql://localhost:3306/eazybank
+    url: jdbc:mysql://localhost:3307/accountsdb
     username: root
-    password: Rohit@1234
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
-    generate-ddl: true
-    properties:
-      hibernate:
-       ddl-auto: update
+  sql:
+   init:
+    mode: always
+#    generate-ddl: true
+#    properties:
+#      hibernate:
+#       ddl-auto: update
   profiles:
     active:
     - prod

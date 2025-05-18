@@ -8,12 +8,15 @@ spring:
     active:
     - prod 
   datasource:
-    url: jdbc:mysql://localhost:3306/eazybank
+    url: jdbc:mysql://localhost:3308/loans
     username: root
     password: Rohit@1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
+  sql:
+   init:
+    mode: always
     generate-ddl: true
     properties:
       hibernate:
